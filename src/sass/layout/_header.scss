@@ -1,0 +1,99 @@
+.header {
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.56) , rgba(0, 0, 0, 0.56)), url("../images/header-bg-sm.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding-top: 40px;
+    padding-bottom: 44px;
+
+    .header-logo__icon {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .header-logo__link {
+        height: 24px;
+    }
+    
+    .container {
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .header-nav__list {
+        list-style: none;
+        display: flex;
+        gap: 40px;
+        font-size: 12px;
+        margin: 0;
+    }
+    
+    .header-nav__link {
+        color: #FFFFFF;
+        font-size: 12px;
+        line-height: calc(14px / 12px);
+        font-weight: 500;
+    }
+    
+    .header__form {
+        border-bottom: 0.5px solid #FFFFFF;
+        display: flex;
+        margin-top: 54px;
+    }
+
+    .header-form__label {
+        width: 100%;
+    }
+    
+    .header__input {
+        color: #FFFFFF;
+        width: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        margin-bottom: 4px;
+        &::placeholder {
+            color: white;
+            transition: all 200ms;
+            position: relative;
+
+            transition-property: background-color, color;
+        transition-duration: 250ms;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        &:focus::placeholder {
+           
+            font-size: 8px; 
+            background: transparent;
+            top: -11px;
+        }
+    }
+    
+    .header-form__btn {
+        display: inline-block;
+        border: none;
+        padding: 0;
+        background: transparent;
+    }
+    
+    .header-form__icon {
+        width: 12px;
+        height: 12px;
+    }
+    
+    .header-error__text {
+        display: block;
+        font-size: 14px;
+        color: #FF001B;
+        margin-top: 16px;
+        line-height: calc(16px / 12px);
+    }
+}
+
