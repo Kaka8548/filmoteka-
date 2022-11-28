@@ -1,0 +1,9 @@
+@import '~node_modules/modern-normalize/modern-normalize.css';
+
+body {
+  font-family: $main-font;
+  font-weight: $regular-weight;
+  color: $main-text-color;
+  font-size: 1.2rem;
+  line-height: 1.2;
+}
