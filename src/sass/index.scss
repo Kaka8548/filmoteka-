@@ -1,7 +1,9 @@
-@import './common';
-@import './container';
-@import './variables';
-@import './placeholders';
+@import './base/reset';
+@import './base/variables';
+@import './base/common';
+@import './base/container';
+@import './base/placeholders';
+@import './base/visually-hidden';
 @import './layout/header';
 @import './layout/main';
 @import './layout/footer';
