@@ -61,18 +61,12 @@
         margin-bottom: 4px;
         &::placeholder {
             color: white;
-            transition: all 200ms;
-            position: relative;
-
-            transition-property: background-color, color;
-        transition-duration: 250ms;
-        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-property: scale;
+            transition-duration: 250ms;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         }
         &:focus::placeholder {
-           
-            font-size: 8px; 
-            background: transparent;
-            top: -11px;
+            scale: 0;
         }
     }
     
@@ -89,6 +83,7 @@
     }
     
     .header-error__text {
+        min-height: 32px;
         display: block;
         font-size: 14px;
         color: #FF001B;
