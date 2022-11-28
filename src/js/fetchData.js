@@ -82,6 +82,8 @@ export const FIND_MOVIE = 'FIND_MOVIE';
 export const FIND_MOVIE_VIDEO = 'FIND_MOVIE_VIDEO';
 
 // How to use
+// 1.Import fetchData function and required API Query to your file;
+// 2.Use function as mentioned below;
 
 // const data = fetchData(TRENDING, { page: 3 });
 // console.log(data);
