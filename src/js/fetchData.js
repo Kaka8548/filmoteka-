@@ -85,7 +85,7 @@ export const FIND_MOVIE_VIDEO = 'FIND_MOVIE_VIDEO';
 // 1.Import fetchData function and required API Query to your file;
 // 2.Use function as mentioned below;
 
-// const data = fetchData(TRENDING, { page: 3 });
+// const data = fetchData(TRENDING, { page: 1 });
 // console.log(data);
 
 // const data = fetchData(SEARCH_MOVIES, { page: 1, query: 'King Art' });
