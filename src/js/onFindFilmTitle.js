@@ -24,6 +24,7 @@ export const onFindFilmTitle = () => {
             errorField.textContent = "There is no films with such name. Please, try again."
             return;
         }
+        console.log(res.data)
         onRenderGallery(res.data.results);
     }
 }

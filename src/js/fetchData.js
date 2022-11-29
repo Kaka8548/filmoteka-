@@ -70,6 +70,23 @@ export const fetchData = async (queryType, params) => {
         );
       }
       break;
+
+      case 'FIND_GENRE':
+        try {
+          const data = axios.get('https://api.themoviedb.org/3/genre/movie/list', {
+                params: {
+                  api_key: 'a8c13239d5351cd341496e4bdbeed27b',
+                },
+            });
+          return data;
+        } catch (error) {
+          console.error(
+            error.message,
+            '; You should pass object with "id" element as the second parameter'
+          );
+        }
+        break;
+
     default:
       console.error('Such query type does not exist');
   }
@@ -80,6 +97,7 @@ export const TRENDING = 'TRENDING';
 export const SEARCH_MOVIES = 'SEARCH_MOVIES';
 export const FIND_MOVIE = 'FIND_MOVIE';
 export const FIND_MOVIE_VIDEO = 'FIND_MOVIE_VIDEO';
+export const FIND_GENRE = 'FIND_GENRE';
 
 // How to use
 // 1.Import fetchData function and required API Query to your file;
