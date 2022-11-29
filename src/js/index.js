@@ -8,4 +8,3 @@ import {
   TRENDING,
 } from './fetchData';
 import { onFindFilmTitle } from './onFindFilmTitle';
-/* import onRenderGallery from './onRenderGallery'; */
