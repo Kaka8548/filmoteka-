@@ -14,7 +14,7 @@ export const onRenderGallery = async (films) => {
         })
 
     const markup = films
-    .map(({poster_path, title, release_date, genreNames}) => {
+    .map(({poster_path, title, release_date = '', genreNames}) => {
         
         if (poster_path === null) {
             imgUrl = "https://via.placeholder.com/700?text=NoImageFound"

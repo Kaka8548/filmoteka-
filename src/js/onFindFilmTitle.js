@@ -16,7 +16,7 @@ export const onFindFilmTitle = () => {
             if (query === searchQuery.value) {
                 return
             }
-        query = searchQuery.value;
+        query = searchQuery.value.trim();
 
         const res = await fetchData(SEARCH_MOVIES, { page: 1, query });
 
