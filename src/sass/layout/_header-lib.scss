@@ -74,14 +74,16 @@
     font-size: 12px;
     line-height: calc(16 / 12);
 
-    transition-property: border, background-color;
+    transition-property: border, background-color, scale;
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
     &:hover,
     &:focus {
+        scale: 1.05;
         border: 1px solid $accent-color;
         background-color: $accent-color;
+        cursor: pointer;
     }
 
     @media screen and (min-width: $tablet-width) {
