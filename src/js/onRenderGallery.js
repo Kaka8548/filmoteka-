@@ -4,7 +4,7 @@ export const onRenderGallery = (films) => {
     gallery.innerHTML = '';
     const markup = films
     .map(film => {
-        let {poster_path, title, release_date} = film;
+        const {poster_path, title, release_date} = film;
         if (poster_path === null) {
             imgUrl = "https://via.placeholder.com/700?text=NoImageFound"
         } else {
