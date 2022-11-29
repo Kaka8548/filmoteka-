@@ -7,3 +7,16 @@ body {
   font-size: 1.2rem;
   line-height: 1.2;
 }
+
+.current {
+  &::before{
+      content: '';
+      top: 15px;
+      left: 0;
+      position: absolute;
+      background: $accent-color;
+      display: block;
+      height: 3px;
+      width: 100%;
+  }
+}
