@@ -153,6 +153,9 @@
         border: none;
         padding: 0;
         background: transparent;
+        &:hover {
+            cursor: pointer;
+        }
     }
     
     .header-form__icon {
