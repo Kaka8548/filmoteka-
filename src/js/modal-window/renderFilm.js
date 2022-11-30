@@ -1,9 +1,9 @@
+import { loading } from '../constants/loading';
 import { fetchData, FIND_MOVIE } from '../fetchData';
 
 export const renderFilm = async id => {
   const MODAL_WINDOW = document.querySelector('.modal-window');
-  MODAL_WINDOW.innerHTML =
-    '  <div class="detailed-info"><h1>LOADING...</h1></div>';
+  MODAL_WINDOW.innerHTML = `  <div class="detailed-info">${loading}</div>`;
   MODAL_WINDOW.classList.remove('hidden');
   const filmData = await fetchData(FIND_MOVIE, { id });
   const { poster_path, overview, title, original_title } = filmData.data;
