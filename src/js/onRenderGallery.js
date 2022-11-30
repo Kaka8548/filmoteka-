@@ -1,4 +1,4 @@
-import { genres } from './genres';
+import { genres } from './constants/genres';
 
 export const onRenderGallery = films => {
   const gallery = document.querySelector('.film-selection');

@@ -1,6 +1,6 @@
 import { onRenderGallery } from './onRenderGallery';
 import { fetchData, SEARCH_MOVIES } from './fetchData';
-import { loading } from './loading';
+import { loading } from './constants/loading';
 
 export const onFindFilmTitle = () => {
   const form = document.querySelector('.header__form');
@@ -11,14 +11,15 @@ export const onFindFilmTitle = () => {
 
   async function onSubmit(e) {
     e.preventDefault();
-    const gallery = document.querySelector('.film-selection');
-    gallery.innerHTML = loading;
     errorField.textContent = '';
 
     const { searchQuery } = e.currentTarget;
     if (query === searchQuery.value) {
       return;
     }
+
+    const gallery = document.querySelector('.film-selection');
+    gallery.innerHTML = loading;
     query = searchQuery.value;
 
     const res = await fetchData(SEARCH_MOVIES, { page: 1, query });

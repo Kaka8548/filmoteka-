@@ -4,7 +4,7 @@
   position: absolute;
   top: 0;
   left: 50%;
-  top: 30%;
+  top: 40%;
   transform: translate(-50%, -50%);
   align-items: center;
   justify-content: center;
@@ -12,13 +12,13 @@
 }
 
 .loading__sign {
-  font-size: 20px;
+  font-size: 4vh;
 }
 
 .loading__spinner {
   margin-left: 15px;
-  width: 60px;
-  height: 60px;
+  width: 8vh;
+  height: 8vh;
   border-radius: 50%;
   background: radial-gradient(farthest-side, $accent-color 94%, #0000)
       top/14.1px 14.1px no-repeat,

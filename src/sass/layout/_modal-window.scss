@@ -28,6 +28,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
 
+  min-height: 680px;
   max-height: 95vh;
   overflow-y: auto;
   overflow-x: hidden;
@@ -43,6 +44,7 @@
 
   @media screen and (min-width: $tablet-width) {
     width: 704px;
+    min-height: 440px;
     display: flex;
     padding: 40px 72px 40px 36px;
   }
