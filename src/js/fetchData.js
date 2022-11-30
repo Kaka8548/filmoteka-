@@ -12,7 +12,6 @@ export const fetchData = async (queryType, params) => {
             ...params,
           },
         });
-        console.log('TRENDING');
         return data;
       } catch (error) {
         console.error(error.message);

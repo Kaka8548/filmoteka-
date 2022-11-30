@@ -1,11 +1,13 @@
-export const onCloseModal = () => {
-  const MODAL_WINDOW = document.querySelector('.modal-window');
-  const closeModal = evetn => {
-    if (!evetn.target.hasAttribute('data-close')) return;
-    MODAL_WINDOW.classList.add('hidden');
-  };
+import { onCloseModal } from './onCloseModal';
+import { renderFilm } from './renderFilm';
 
-  MODAL_WINDOW.addEventListener('click', closeModal);
+const FILMS_LIST = document.querySelector('.film-selection');
+
+export const openModalWindow = event => {
+  if (event.target.className === 'film-selection') return;
+  const film = event.target.closest('.film');
+  const filmId = film.dataset.id;
+  renderFilm(filmId);
 };
 
-onCloseModal();
+FILMS_LIST.addEventListener('click', openModalWindow);
