@@ -1,9 +1,5 @@
 import axios from 'axios';
 import { Pagination } from 'tui-pagination';
-import {
-  fetchData,
-  FIND_MOVIE,
-  FIND_MOVIE_VIDEO,
-  SEARCH_MOVIES,
-  TRENDING,
-} from './fetchData';
+import { onTrending } from './onTrending';
+import { onFindFilmTitle } from './onFindFilmTitle';
+import { openModalWindow } from './modal-window';

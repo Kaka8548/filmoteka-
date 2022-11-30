@@ -1,5 +1,7 @@
 .main {
   background-color: #e5e5e5;
+  min-height: 95vh;
+  position: relative;
 }
 
 .film-selection {
@@ -40,15 +42,18 @@
 
 .film__poster {
   margin-bottom: 10px;
+  height: 402px;
   width: 100%;
   border-radius: 5px;
 
   @media screen and (min-width: $tablet-width) {
     margin-bottom: 8px;
+    height: 455px;
   }
 
   @media screen and (min-width: $desktop-width) {
     margin-bottom: 12px;
+    height: 574px;
   }
 }
 
