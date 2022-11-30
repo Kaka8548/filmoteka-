@@ -10,7 +10,9 @@ const FILMS_LIST = document.querySelector('.film-selection');
 
 const renderFilm = async id => {
   const MODAL_WINDOW = document.querySelector('.modal-window');
-
+  MODAL_WINDOW.innerHTML =
+    '  <div class="detailed-info"><h1>LOADING...</h1></div>';
+  MODAL_WINDOW.classList.remove('hidden');
   const filmData = await fetchData(FIND_MOVIE, { id });
   console.log(filmData.data);
   const { poster_path, overview, title, original_title } = filmData.data;
@@ -76,7 +78,6 @@ const renderFilm = async id => {
   </div>
 
   `;
-  MODAL_WINDOW.classList.remove('hidden');
 };
 
 const openModalWindow = event => {
