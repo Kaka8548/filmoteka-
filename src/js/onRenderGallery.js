@@ -27,6 +27,7 @@ export const onRenderGallery = films => {
             ? genreNames[0] + ', ' + genreNames[1] + ', ' + genreNames[2]
             : genreNames.join(', ')
         }
+        | ${release_date.split('-')[0]}</p>
      </article>
      `;
     })
