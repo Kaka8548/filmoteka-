@@ -21,7 +21,7 @@ export const onRenderGallery = films => {
       return `
      <article class="film" data-id=${id}>
         <img class="film__poster" src=${imgUrl} alt="" />
-        <h2 class="film__title">${title}</h2>
+        <div class="film-title__block"><h2 class="film__title">${title}</h2></div>
         <p class="film__info"> ${
           genreNames.length > 2
             ? genreNames[0] + ', ' + genreNames[1] + ', ' + genreNames[2]
