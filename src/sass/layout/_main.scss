@@ -26,21 +26,34 @@
   font-weight: 500;
   font-size: 12px;
   line-height: 16px;
+  height: 440px;
+
+  transition-property: scale;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:hover {
+    scale: 1.02;
+    cursor: pointer;
+  }
 
   @media screen and (min-width: $tablet-width) {
     margin-bottom: 0;
     width: 336px;
+    height: 495px;
   }
 
   @media screen and (min-width: $desktop-width) {
     margin-bottom: 16px;
     width: 394px;
+    height: 634px;
     font-size: 20px;
     line-height: 24px;
   }
 }
 
 .film__poster {
+  object-fit: cover;
   margin-bottom: 10px;
   height: 402px;
   width: 100%;
@@ -63,6 +76,15 @@
   font-size: inherit;
   line-height: inherit;
   text-transform: uppercase;
+}
+
+.film-title__block {
+  max-height: 18px;
+  overflow: hidden;
+
+  @media screen and (min-width: $desktop-width) {
+    max-height: 28px;
+  }
 }
 
 .film__info {
