@@ -78,6 +78,12 @@
     transition-duration: 250ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 
+    &.active {
+        color: $white-text-color;
+        border: 1px solid $accent-color;
+        background-color: $accent-color;
+      }
+
     &:hover,
     &:focus {
         scale: 1.05;

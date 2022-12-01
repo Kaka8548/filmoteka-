@@ -9,5 +9,6 @@ export const onTrending = async page => {
 
   onRenderGallery(res.data.results);
 };
-
+document.querySelector('.header-logo__link').addEventListener('click', onTrending);
 onTrending();
+
