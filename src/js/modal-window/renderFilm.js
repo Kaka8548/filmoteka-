@@ -5,6 +5,8 @@ import { addFilmToQueued } from '../add-remove-local-storage/add-to-queued';
 import { addFilmToWatched } from '../add-remove-local-storage/add-to-watched';
 import { removeFilmFromWatched } from '../add-remove-local-storage/remove-from-watched';
 import { removeFilmFromQueued } from '../add-remove-local-storage/remove-from-queued';
+
+// import { onRederLibrary } from '../utilities/onRenderLibrary';
 export const renderFilm = async id => {
   const MODAL_WINDOW = document.querySelector('.modal-window');
   MODAL_WINDOW.innerHTML = `${loading}`;
@@ -133,6 +135,9 @@ export const renderFilm = async id => {
   }
 
   WATCHED.addEventListener('click', () => {
+    const isFilmInWatched = (
+      JSON.parse(localStorage.getItem('watched')) || []
+    ).some(film => film.id === id);
     if (isFilmInWatched) {
       console.log('hello');
       WATCHED.textContent = WATCHED.textContent.replace(
@@ -141,6 +146,7 @@ export const renderFilm = async id => {
       );
       WATCHED.classList.add('active');
       removeFilmFromWatched(id);
+      console.log(localStorage.getItem('watched'));
     }
 
     if (!isFilmInWatched) {
@@ -150,7 +156,9 @@ export const renderFilm = async id => {
         'remove from'
       );
       WATCHED.classList.remove('active');
+      addFilmToWatched(filmProps);
     }
+    // onRederLibrary('watched');
   });
 
   // QUEOUE.addEventListener('click', () => {
