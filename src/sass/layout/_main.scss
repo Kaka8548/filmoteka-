@@ -1,7 +1,7 @@
 .main {
-  background-color: #e5e5e5;
   min-height: 95vh;
   position: relative;
+  margin-bottom: 40px;
 }
 
 .film-selection {
@@ -14,10 +14,12 @@
     justify-content: flex-start;
     flex-wrap: wrap;
     gap: 32px;
+    margin-bottom: 60px;
   }
 
   @media screen and (min-width: $desktop-width) {
     gap: 16px;
+    margin-bottom: 60px;
   }
 }
 
