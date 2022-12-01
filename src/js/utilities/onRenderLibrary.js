@@ -6,7 +6,6 @@ export const onRederLibrary = storageEl => {
     gallery.innerHTML = '<h1>Library is ampty</h1>';
     return;
   }
-  console.log('hello');
   onRenderGallery(films);
 };
 

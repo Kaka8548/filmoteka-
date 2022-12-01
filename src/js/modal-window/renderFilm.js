@@ -12,7 +12,6 @@ export const renderFilm = async id => {
   const { poster_path, overview, title, original_title, release_date, genres } =
     filmData.data;
   let imgUrl;
-  console.log(filmData.data);
   if (poster_path === null) {
     imgUrl = 'https://via.placeholder.com/700?text=NoImageFound';
   } else {
@@ -80,8 +79,6 @@ export const renderFilm = async id => {
 
   const genre_ids = genres.map(genre => genre.id);
 
-  console.log(genre_ids);
-
   const filmProps = {
     poster_path,
     title,
@@ -101,5 +98,3 @@ export const renderFilm = async id => {
     addFilmToWatched(filmProps);
   });
 };
-
-console.log(localStorage.getItem('queued'));
