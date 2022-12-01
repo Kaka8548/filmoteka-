@@ -1,6 +1,6 @@
 import * as utils from './add-remove-utilities.js';
 
-function addFilmToWatched(film) {
+export function addFilmToWatched(film) {
   try {
     if (
       utils.checkFilmForBeingObject(film) ||

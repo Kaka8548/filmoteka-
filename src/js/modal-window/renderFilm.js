@@ -1,13 +1,16 @@
 import { loading } from '../constants/loading';
-import { fetchData, FIND_MOVIE } from '../fetchData';
-import sprite from '../../images/sprite.svg'
+import { fetchData, FIND_MOVIE } from '../utilities/fetchData';
+import sprite from '../../images/sprite.svg';
+import { addFilmToQueued } from '../add-remove-local-storage/add-to-queued';
+import { addFilmToWatched } from '../add-remove-local-storage/add-to-watched';
 
 export const renderFilm = async id => {
   const MODAL_WINDOW = document.querySelector('.modal-window');
-  MODAL_WINDOW.innerHTML = `  <div class="detailed-info">${loading}</div>`;
+  MODAL_WINDOW.innerHTML = `${loading}`;
   MODAL_WINDOW.classList.remove('hidden');
   const filmData = await fetchData(FIND_MOVIE, { id });
-  const { poster_path, overview, title, original_title } = filmData.data;
+  const { poster_path, overview, title, original_title, release_date, genres } =
+    filmData.data;
   let imgUrl;
   if (poster_path === null) {
     imgUrl = 'https://via.placeholder.com/700?text=NoImageFound';
@@ -65,12 +68,33 @@ export const renderFilm = async id => {
       </article>
 
       <ul class="detailed-info__button-list">
-        <li><button class="detailed-info__button active">add to Watched</button></li>
-        <li><button class="detailed-info__button">add to queue</button></li>
+        <li><button class="detailed-info__button active watched">add to Watched</button></li>
+        <li><button class="detailed-info__button queue">add to queue</button></li>
       </ul>
 
     </div>
   </div>
 
   `;
+
+  const genre_ids = genres.map(genre => genre.id);
+
+  const filmProps = {
+    poster_path,
+    title,
+    release_date,
+    id,
+    genre_ids,
+    hello: 'dfsdf',
+  };
+  const QUEOUE = MODAL_WINDOW.querySelector('.queue');
+  const WATCHED = MODAL_WINDOW.querySelector('.watched');
+
+  QUEOUE.addEventListener('click', () => {
+    addFilmToQueued(filmProps);
+  });
+
+  WATCHED.addEventListener('click', () => {
+    addFilmToWatched(filmProps);
+  });
 };
