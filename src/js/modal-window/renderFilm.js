@@ -9,9 +9,10 @@ export const renderFilm = async id => {
   MODAL_WINDOW.innerHTML = `${loading}`;
   MODAL_WINDOW.classList.remove('hidden');
   const filmData = await fetchData(FIND_MOVIE, { id });
-  const { poster_path, overview, title, original_title, release_date } =
+  const { poster_path, overview, title, original_title, release_date, genres } =
     filmData.data;
   let imgUrl;
+  console.log(filmData.data);
   if (poster_path === null) {
     imgUrl = 'https://via.placeholder.com/700?text=NoImageFound';
   } else {
@@ -77,7 +78,18 @@ export const renderFilm = async id => {
 
   `;
 
-  const filmProps = { poster_path, title, release_date, id };
+  const genre_ids = genres.map(genre => genre.id);
+
+  console.log(genre_ids);
+
+  const filmProps = {
+    poster_path,
+    title,
+    release_date,
+    id,
+    genre_ids,
+    hello: 'dfsdf',
+  };
   const QUEOUE = MODAL_WINDOW.querySelector('.queue');
   const WATCHED = MODAL_WINDOW.querySelector('.queue');
 

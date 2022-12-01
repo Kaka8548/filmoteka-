@@ -6,7 +6,7 @@ export const onRenderGallery = films => {
   gallery.innerHTML = '';
   const markup = films
     .map(film => {
-      const { poster_path, title, release_date = '', genre_ids, id } = film;
+      const { poster_path, title, release_date = '', id } = film;
 
       const genreNames = film.genre_ids.map(
         id => genres.find(({ id: filmId }) => id === filmId).name
