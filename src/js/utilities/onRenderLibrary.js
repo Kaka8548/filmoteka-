@@ -16,8 +16,12 @@ const QUEUE = document.querySelector('.queue');
 
 WATCHED.addEventListener('click', () => {
   onRederLibrary('watched');
+  WATCHED.classList.add('active');
+  QUEUE.classList.remove('active');
 });
 
 QUEUE.addEventListener('click', () => {
   onRederLibrary('queued');
+  WATCHED.classList.remove('active');
+  QUEUE.classList.add('active');
 });

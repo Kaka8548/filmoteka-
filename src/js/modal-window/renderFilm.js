@@ -3,20 +3,33 @@ import { fetchData, FIND_MOVIE } from '../utilities/fetchData';
 import sprite from '../../images/sprite.svg';
 import { addFilmToQueued } from '../add-remove-local-storage/add-to-queued';
 import { addFilmToWatched } from '../add-remove-local-storage/add-to-watched';
-
+import { removeFilmFromWatched } from '../add-remove-local-storage/remove-from-watched';
+import { removeFilmFromQueued } from '../add-remove-local-storage/remove-from-queued';
 export const renderFilm = async id => {
   const MODAL_WINDOW = document.querySelector('.modal-window');
   MODAL_WINDOW.innerHTML = `${loading}`;
   MODAL_WINDOW.classList.remove('hidden');
   const filmData = await fetchData(FIND_MOVIE, { id });
-  const { poster_path, overview, title, original_title, release_date, genres } =
-    filmData.data;
+  const {
+    poster_path,
+    overview,
+    title,
+    original_title,
+    release_date,
+    genres,
+    popularity,
+    vote_average,
+    vote_count,
+  } = filmData.data;
+
   let imgUrl;
   if (poster_path === null) {
     imgUrl = 'https://via.placeholder.com/700?text=NoImageFound';
   } else {
     imgUrl = 'https://image.tmdb.org/t/p/w500' + poster_path;
   }
+
+  const genreNames = genres.map(genre => genre.name);
 
   MODAL_WINDOW.innerHTML = `
   <div class="detailed-info">
@@ -32,26 +45,26 @@ export const renderFilm = async id => {
             Vote / Votes
           </th>
           <td class="description-el__value">
-            <span class="description-el__rating description-el__rating--orrange">7.3</span>
+            <span class="description-el__rating description-el__rating--orrange">${vote_average}</span>
             <span class="description-el__slash">/</span>
-            <span class="description-el__rating description-el__rating--white">1260</span>
+            <span class="description-el__rating description-el__rating--white">${vote_count}</span>
           </td>
         </tr>
         <tr class="descript-el">
           <th class="description-el__caption">
             Popularity
           </th>
-          <td class="description-el__value">100.2</td>
+          <td class="description-el__value">${popularity}</td>
         </tr>
         <tr class="descript-el">
           <th class="description-el__caption"> Original Title</th>
-          <td class="description-el__value">A FISTFUL OF LEAD</td>
+          <td class="description-el__value">${original_title}</td>
         </tr>
         <tr class="descript-el">
           <th class="description-el__caption">
             Genre
           </th>
-          <td class="description-el__value">Western</td>
+          <td class="description-el__value">${genreNames.join(', ')}</td>
         </tr>
       </table>
 
@@ -68,7 +81,7 @@ export const renderFilm = async id => {
       </article>
 
       <ul class="detailed-info__button-list">
-        <li><button class="detailed-info__button active watched">add to Watched</button></li>
+        <li><button class="detailed-info__button  watched">add to Watched</button></li>
         <li><button class="detailed-info__button queue">add to queue</button></li>
       </ul>
 
@@ -90,11 +103,59 @@ export const renderFilm = async id => {
   const QUEOUE = MODAL_WINDOW.querySelector('.queue');
   const WATCHED = MODAL_WINDOW.querySelector('.watched');
 
-  QUEOUE.addEventListener('click', () => {
-    addFilmToQueued(filmProps);
-  });
+  const isFilmInWatched = (
+    JSON.parse(localStorage.getItem('watched')) || []
+  ).some(film => film.id === id);
+  const isFilmInQueued = (
+    JSON.parse(localStorage.getItem('queued')) || []
+  ).some(film => film.id === id);
+
+  console.log(isFilmInWatched, isFilmInQueued);
+
+  if (isFilmInWatched) {
+    WATCHED.textContent = WATCHED.textContent.replace('add to', 'remove from');
+    WATCHED.classList.remove('active');
+  }
+
+  if (!isFilmInWatched) {
+    WATCHED.textContent = WATCHED.textContent.replace('remove from', 'add to');
+    WATCHED.classList.add('active');
+  }
+
+  if (isFilmInQueued) {
+    QUEOUE.textContent = QUEOUE.textContent.replace('add to', 'remove from');
+    QUEOUE.classList.remove('active');
+  }
+
+  if (!isFilmInQueued) {
+    QUEOUE.textContent = QUEOUE.textContent.replace('remove from', 'add to');
+    QUEOUE.classList.add('active');
+  }
 
   WATCHED.addEventListener('click', () => {
-    addFilmToWatched(filmProps);
+    if (isFilmInWatched) {
+      console.log('hello');
+      WATCHED.textContent = WATCHED.textContent.replace(
+        'remove from',
+        'add to'
+      );
+      WATCHED.classList.add('active');
+      removeFilmFromWatched(id);
+    }
+
+    if (!isFilmInWatched) {
+      console.log('hello2');
+      WATCHED.textContent = WATCHED.textContent.replace(
+        'add to',
+        'remove from'
+      );
+      WATCHED.classList.remove('active');
+    }
   });
+
+  // QUEOUE.addEventListener('click', () => {
+  //   addFilmToQueued(filmProps);
+  //   QUEOUE.textContent = QUEOUE.textContent.replace('add to', 'remove from');
+  //   QUEOUE.classList.add('active');
+  // });
 };
