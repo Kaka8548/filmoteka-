@@ -1,6 +1,6 @@
 import { onRenderGallery } from './onRenderGallery';
 import { fetchData, TRENDING } from './fetchData';
-import { loading } from './constants/loading';
+import { loading } from '../constants/loading';
 
 export const onTrending = async page => {
   const gallery = document.querySelector('.film-selection');
