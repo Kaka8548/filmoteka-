@@ -1,5 +1,6 @@
 import { loading } from '../constants/loading';
 import { fetchData, FIND_MOVIE } from '../utilities/fetchData';
+import sprite from '../../images/sprite.svg';
 import { addFilmToQueued } from '../add-remove-local-storage/add-to-queued';
 import { addFilmToWatched } from '../add-remove-local-storage/add-to-watched';
 
@@ -19,6 +20,9 @@ export const renderFilm = async id => {
 
   MODAL_WINDOW.innerHTML = `
   <div class="detailed-info">
+  <svg class="modal-close__btn" data-close>
+    <use href=${sprite + '#icon-cross'}></use>
+  </svg>
     <img class="detailed-info__image" src=${imgUrl} alt=${title}>
     <div class="description-wrapper">
       <div class="detailed-info__caption">${title}</div>
