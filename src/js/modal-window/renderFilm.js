@@ -93,17 +93,6 @@ export const renderFilm = async id => {
   };
   const QUEOUE = MODAL_WINDOW.querySelector('.queue');
   const WATCHED = MODAL_WINDOW.querySelector('.watched');
-
-  const btn = document.querySelector('.watch-trailer__btn');
-
-  btn.addEventListener('click', async () => {
-    const res = await fetchData(FIND_MOVIE_VIDEO, { id })
-    const [results] = res.data.results;
-    const {key} = results
- 
-    console.log(res.data.results)
-    onRenderVideo(key);
-  })
   
   QUEOUE.addEventListener('click', () => {
     addFilmToQueued(filmProps);
@@ -112,4 +101,19 @@ export const renderFilm = async id => {
   WATCHED.addEventListener('click', () => {
     addFilmToWatched(filmProps);
   });
+
+  const watchTrailorBtn = document.querySelector('.watch-trailer__btn');
+
+  watchTrailorBtn.addEventListener('click', async () => {
+    const res = await fetchData(FIND_MOVIE_VIDEO, { id })
+    const [results = ''] = res.data.results;
+    let {key = ''} = results;
+  
+    onRenderVideo(key);
+
+    const BACK_BUTTON = document.querySelector('.video-back__btn');
+    BACK_BUTTON.addEventListener('click', () => {
+      renderFilm(id)
+    })
+  })
 };
