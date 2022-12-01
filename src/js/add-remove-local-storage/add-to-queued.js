@@ -1,6 +1,6 @@
-import * as utils from "./add-remove-utilities.js";
+import * as utils from './add-remove-utilities.js';
 
-function addFilmToQueued(film) {
+export function addFilmToQueued(film) {
   try {
     if (
       utils.checkFilmForBeingObject(film) ||
@@ -9,7 +9,7 @@ function addFilmToQueued(film) {
       return;
     }
 
-    const arrayKey = "queued";
+    const arrayKey = 'queued';
     let queuedArray = utils.getFilmsFromLocalStorage(arrayKey);
     const { id } = film;
 
@@ -20,6 +20,6 @@ function addFilmToQueued(film) {
     utils.addFilmToArray(queuedArray, film);
     utils.addFilmsToLocalStorage(queuedArray, arrayKey);
   } catch (error) {
-    console.log("Error", error.message);
+    console.log('Error', error.message);
   }
 }

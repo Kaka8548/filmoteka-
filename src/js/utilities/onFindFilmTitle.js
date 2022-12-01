@@ -1,6 +1,6 @@
 import { onRenderGallery } from './onRenderGallery';
 import { fetchData, SEARCH_MOVIES } from './fetchData';
-import { loading } from './constants/loading';
+import { loading } from '../constants/loading';
 
 export const onFindFilmTitle = () => {
   const form = document.querySelector('.header__form');
