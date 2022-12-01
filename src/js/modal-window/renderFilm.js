@@ -91,10 +91,14 @@ export const renderFilm = async id => {
     hello: 'dfsdf',
   };
   const QUEOUE = MODAL_WINDOW.querySelector('.queue');
-  const WATCHED = MODAL_WINDOW.querySelector('.queue');
+  const WATCHED = MODAL_WINDOW.querySelector('.watched');
 
   QUEOUE.addEventListener('click', () => {
     addFilmToQueued(filmProps);
+  });
+
+  WATCHED.addEventListener('click', () => {
+    addFilmToWatched(filmProps);
   });
 };
 
