@@ -119,8 +119,6 @@ export const renderFilm = async id => {
       JSON.parse(localStorage.getItem('queued')) || []
     ).some(film => film.id === id);
 
-    console.log(isFilmInWatched, isFilmInQueued);
-
     if (isFilmInWatched) {
       WATCHED.textContent = WATCHED.textContent.replace(
         'add to',
@@ -152,7 +150,6 @@ export const renderFilm = async id => {
         JSON.parse(localStorage.getItem('watched')) || []
       ).some(film => film.id === id);
       if (isFilmInWatched) {
-        console.log('hello');
         WATCHED.textContent = WATCHED.textContent.replace(
           'remove from',
           'add to'
@@ -162,7 +159,6 @@ export const renderFilm = async id => {
       }
 
       if (!isFilmInWatched) {
-        console.log('hello2');
         WATCHED.textContent = WATCHED.textContent.replace(
           'add to',
           'remove from'
@@ -180,7 +176,6 @@ export const renderFilm = async id => {
         JSON.parse(localStorage.getItem('queued')) || []
       ).some(film => film.id === id);
       if (isFilmInQueued) {
-        console.log('hello');
         QUEOUE.textContent = QUEOUE.textContent.replace(
           'remove from',
           'add to'
@@ -190,7 +185,6 @@ export const renderFilm = async id => {
       }
 
       if (!isFilmInQueued) {
-        console.log('hello2');
         QUEOUE.textContent = QUEOUE.textContent.replace(
           'add to',
           'remove from'
@@ -204,4 +198,19 @@ export const renderFilm = async id => {
     });
   };
   libraryActions();
+
+  const watchTrailorBtn = document.querySelector('.watch-trailer__btn');
+
+  watchTrailorBtn.addEventListener('click', async () => {
+    const res = await fetchData(FIND_MOVIE_VIDEO, { id });
+    const [results = ''] = res.data.results;
+    let { key = '' } = results;
+
+    onRenderVideo(key);
+
+    const BACK_BUTTON = document.querySelector('.video-back__btn');
+    BACK_BUTTON.addEventListener('click', () => {
+      renderFilm(id);
+    });
+  });
 };
