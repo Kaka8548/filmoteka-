@@ -1,8 +1,13 @@
 import { loading } from '../constants/loading';
-import { fetchData, FIND_MOVIE } from '../utilities/fetchData';
+import {
+  fetchData,
+  FIND_MOVIE,
+  FIND_MOVIE_VIDEO,
+} from '../utilities/fetchData';
 import sprite from '../../images/sprite.svg';
 import { addFilmToQueued } from '../add-remove-local-storage/add-to-queued';
 import { addFilmToWatched } from '../add-remove-local-storage/add-to-watched';
+import { onRenderVideo } from '../utilities/onRenderVideo';
 import { removeFilmFromWatched } from '../add-remove-local-storage/remove-from-watched';
 import { removeFilmFromQueued } from '../add-remove-local-storage/remove-from-queued';
 
@@ -38,7 +43,10 @@ export const renderFilm = async id => {
   <svg class="modal-close__btn" data-close>
     <use href=${sprite + '#icon-cross'}></use>
   </svg>
-    <img class="detailed-info__image" src=${imgUrl} alt=${title}>
+    <div class="description-wrapper__img">
+      <img class="detailed-info__image" src=${imgUrl} alt=${title}>
+      <button class="detailed-info__button watch-trailer__btn">Watch trailer</button>
+    </div>
     <div class="description-wrapper">
       <div class="detailed-info__caption">${title}</div>
       <table class="descript-table">
@@ -86,7 +94,6 @@ export const renderFilm = async id => {
         <li><button class="detailed-info__button  watched_btn">add to Watched</button></li>
         <li><button class="detailed-info__button queue_btn">add to queue</button></li>
       </ul>
-
     </div>
   </div>
 
