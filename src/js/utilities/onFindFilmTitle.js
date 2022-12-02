@@ -19,7 +19,7 @@ export const onFindFilmTitle = () => {
     }
 
     const gallery = document.querySelector('.film-selection');
-    gallery.innerHTML = loading;
+
     query = searchQuery.value;
 
     const res = await fetchData(SEARCH_MOVIES, { page: 1, query });
@@ -29,6 +29,7 @@ export const onFindFilmTitle = () => {
         'There is no films with such name. Please, try again.';
       return;
     }
+    gallery.innerHTML = loading;
     onRenderGallery(res.data.results);
   }
 };
