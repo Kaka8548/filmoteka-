@@ -6,6 +6,7 @@ export function removeFilmFromWatched(id) {
     let watchedArray = utils.getFilmsFromLocalStorage(arrayKey);
 
     utils.removeFilmFromLocalStorage(watchedArray, id);
+    utils.addFilmsToLocalStorage(watchedArray, arrayKey);
   } catch (error) {
     console.log('Error', error.message);
   }

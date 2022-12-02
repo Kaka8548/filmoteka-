@@ -42,7 +42,7 @@ export function addFilmsToLocalStorage(filmArray, keyOfArray) {
 }
 
 export function addFilmToArray(array, film) {
-  array.push(film);
+  array.unshift(film);
 }
 
 export function removeFilmFromWatched(film) {

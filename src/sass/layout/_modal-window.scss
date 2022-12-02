@@ -230,12 +230,8 @@
     background-color: $accent-color;
   }
 
-  &:hover,
-  &:focus {
-    color: $white-text-color;
+  &:hover {
     scale: 1.05;
-    border: 1px solid $accent-color;
-    background-color: $accent-color;
     cursor: pointer;
   }
 
