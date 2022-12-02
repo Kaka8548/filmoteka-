@@ -1,14 +1,16 @@
 import { loading } from '../constants/loading';
-import { fetchData, FIND_MOVIE } from '../utilities/fetchData';
+import { fetchData, FIND_MOVIE, FIND_MOVIE_VIDEO } from '../utilities/fetchData';
 import sprite from '../../images/sprite.svg';
 import { addFilmToQueued } from '../add-remove-local-storage/add-to-queued';
 import { addFilmToWatched } from '../add-remove-local-storage/add-to-watched';
+import { onRenderVideo } from '../utilities/onRenderVideo';
 
 export const renderFilm = async id => {
   const MODAL_WINDOW = document.querySelector('.modal-window');
   MODAL_WINDOW.innerHTML = `${loading}`;
   MODAL_WINDOW.classList.remove('hidden');
   const filmData = await fetchData(FIND_MOVIE, { id });
+
   const { poster_path, overview, title, original_title, release_date, genres } =
     filmData.data;
   let imgUrl;
@@ -23,7 +25,10 @@ export const renderFilm = async id => {
   <svg class="modal-close__btn" data-close>
     <use href=${sprite + '#icon-cross'}></use>
   </svg>
-    <img class="detailed-info__image" src=${imgUrl} alt=${title}>
+    <div class="description-wrapper__img">
+      <img class="detailed-info__image" src=${imgUrl} alt=${title}>
+      <button class="detailed-info__button watch-trailer__btn">Watch trailer</button>
+    </div>
     <div class="description-wrapper">
       <div class="detailed-info__caption">${title}</div>
       <table class="descript-table">
@@ -71,7 +76,6 @@ export const renderFilm = async id => {
         <li><button class="detailed-info__button active watched">add to Watched</button></li>
         <li><button class="detailed-info__button queue">add to queue</button></li>
       </ul>
-
     </div>
   </div>
 
@@ -89,7 +93,7 @@ export const renderFilm = async id => {
   };
   const QUEOUE = MODAL_WINDOW.querySelector('.queue');
   const WATCHED = MODAL_WINDOW.querySelector('.watched');
-
+  
   QUEOUE.addEventListener('click', () => {
     addFilmToQueued(filmProps);
   });
@@ -97,4 +101,19 @@ export const renderFilm = async id => {
   WATCHED.addEventListener('click', () => {
     addFilmToWatched(filmProps);
   });
+
+  const watchTrailorBtn = document.querySelector('.watch-trailer__btn');
+
+  watchTrailorBtn.addEventListener('click', async () => {
+    const res = await fetchData(FIND_MOVIE_VIDEO, { id })
+    const [results = ''] = res.data.results;
+    let {key = ''} = results;
+  
+    onRenderVideo(key);
+
+    const BACK_BUTTON = document.querySelector('.video-back__btn');
+    BACK_BUTTON.addEventListener('click', () => {
+      renderFilm(id)
+    })
+  })
 };
