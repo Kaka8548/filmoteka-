@@ -1,17 +1,9 @@
 import * as utils from './add-remove-utilities.js';
 
-export function removeFilmFromWatched(film) {
+export function removeFilmFromWatched(id) {
   try {
-    if (
-      utils.checkFilmForBeingObject(film) ||
-      utils.checkFilmProperties(film)
-    ) {
-      return;
-    }
-
     const arrayKey = 'watched';
     let watchedArray = utils.getFilmsFromLocalStorage(arrayKey);
-    const { id } = film;
 
     utils.removeFilmFromLocalStorage(watchedArray, id);
     utils.addFilmsToLocalStorage(watchedArray, arrayKey);
