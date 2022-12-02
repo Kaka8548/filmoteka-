@@ -15,7 +15,7 @@ document.querySelector('.header-logo__link').addEventListener('click', () => {
   onTrending();
   form.reset();
 });
-document.querySelector('[data-home').addEventListener('click', () => {
+document.querySelector('[data-home]').addEventListener('click', () => {
   onTrending();
   form.reset();
 });

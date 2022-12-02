@@ -1,4 +1,5 @@
 import * as utils from './add-remove-utilities.js';
+import { Report } from 'notiflix/build/notiflix-report-aio';
 
 export function addFilmToWatched(film) {
   try {
@@ -14,6 +15,11 @@ export function addFilmToWatched(film) {
     const { id } = film;
 
     if (utils.checkFilmForBeingInCollection(watchedArray, id)) {
+      Report.info(
+        'Info',
+        'The film is already in your library.<br/><br/>',
+        'Back'
+        );
       return;
     }
 
