@@ -105,6 +105,8 @@ export const renderFilm = async id => {
   const watchTrailorBtn = document.querySelector('.watch-trailer__btn');
 
   watchTrailorBtn.addEventListener('click', async () => {
+    const MODAL_WINDOW = document.querySelector('.modal-window');
+    MODAL_WINDOW.innerHTML = `${loading}`;
     const res = await fetchData(FIND_MOVIE_VIDEO, { id })
     const [results = ''] = res.data.results;
     let {key = ''} = results;
