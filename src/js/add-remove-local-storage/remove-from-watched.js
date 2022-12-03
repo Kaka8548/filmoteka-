@@ -1,4 +1,5 @@
 import * as utils from './add-remove-utilities.js';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export function removeFilmFromWatched(id) {
   try {
@@ -7,6 +8,7 @@ export function removeFilmFromWatched(id) {
 
     utils.removeFilmFromLocalStorage(watchedArray, id);
     utils.addFilmsToLocalStorage(watchedArray, arrayKey);
+    Notify.success('Removed from WATCHED!');
   } catch (error) {
     console.log('Error', error.message);
   }

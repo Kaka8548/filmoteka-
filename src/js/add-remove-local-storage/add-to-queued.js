@@ -1,4 +1,5 @@
 import * as utils from './add-remove-utilities.js';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
 export function addFilmToQueued(film) {
   try {
@@ -12,6 +13,8 @@ export function addFilmToQueued(film) {
     const arrayKey = 'queued';
     let queuedArray = utils.getFilmsFromLocalStorage(arrayKey);
     const { id } = film;
+
+    Notify.success('Added to QUEUED!');
 
     if (utils.checkFilmForBeingInCollection(queuedArray, id)) {
       return;

@@ -1,5 +1,7 @@
 import * as utils from './add-remove-utilities.js';
 import { Report } from 'notiflix/build/notiflix-report-aio';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import { notiflixSettings } from '../constants/notiflix.js';
 
 export function addFilmToWatched(film) {
   try {
@@ -14,12 +16,9 @@ export function addFilmToWatched(film) {
     let watchedArray = utils.getFilmsFromLocalStorage(arrayKey);
     const { id } = film;
 
+    Notify.success('Added to WATCHED!');
+
     if (utils.checkFilmForBeingInCollection(watchedArray, id)) {
-      Report.info(
-        'Info',
-        'The film is already in your library.<br/><br/>',
-        'Back'
-        );
       return;
     }
 
