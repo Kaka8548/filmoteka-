@@ -1,6 +1,6 @@
 import { onRenderGallery } from './onRenderGallery';
 import { fetchData, SEARCH_MOVIES } from './fetchData';
-import { loading } from './constants/loading';
+import { loading } from '../constants/loading';
 import Pagination from './pagination';
 
 export const onFindFilmTitle = () => {
@@ -20,7 +20,7 @@ export const onFindFilmTitle = () => {
     }
 
     const gallery = document.querySelector('.film-selection');
-    gallery.innerHTML = loading;
+
     query = searchQuery.value;
 
     const res = await fetchData(SEARCH_MOVIES, { page: 1, query });
@@ -30,6 +30,7 @@ export const onFindFilmTitle = () => {
         'There is no films with such name. Please, try again.';
       return;
     }
+    gallery.innerHTML = loading;
     onRenderGallery(res.data.results);
     Pagination(res.data, 'SEARCH_MOVIES', query);
   }
