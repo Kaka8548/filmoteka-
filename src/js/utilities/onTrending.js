@@ -11,7 +11,14 @@ export const onTrending = async page => {
   onRenderGallery(res.data.results);
   Pagination(res.data, 'TRENDING');
 };
-document
-  .querySelector('.header-logo__link')
-  .addEventListener('click', onTrending);
+
+const form = document.querySelector('.header__form');
+document.querySelector('.header-logo__link').addEventListener('click', () => {
+  onTrending();
+  form.reset();
+});
+document.querySelector('[data-home]').addEventListener('click', () => {
+  onTrending();
+  form.reset();
+});
 onTrending();
