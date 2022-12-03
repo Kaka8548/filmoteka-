@@ -1,6 +1,7 @@
 import { onRenderGallery } from './onRenderGallery';
 import { fetchData, SEARCH_MOVIES } from './fetchData';
 import { loading } from './constants/loading';
+import Pagination from './pagination';
 
 export const onFindFilmTitle = () => {
   const form = document.querySelector('.header__form');
@@ -30,6 +31,7 @@ export const onFindFilmTitle = () => {
       return;
     }
     onRenderGallery(res.data.results);
+    Pagination(res.data, 'SEARCH_MOVIES', query);
   }
 };
 
