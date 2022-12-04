@@ -10,7 +10,7 @@ import { addFilmToWatched } from '../add-remove-local-storage/add-to-watched';
 import { onRenderVideo } from '../utilities/onRenderVideo';
 import { removeFilmFromWatched } from '../add-remove-local-storage/remove-from-watched';
 import { removeFilmFromQueued } from '../add-remove-local-storage/remove-from-queued';
-
+import { loginOperation } from '../firebase';
 import { onRederLibrary } from '../utilities/onRenderLibrary';
 export const renderFilm = async id => {
   const MODAL_WINDOW = document.querySelector('.modal-window');
@@ -146,6 +146,10 @@ export const renderFilm = async id => {
     }
 
     WATCHED.addEventListener('click', () => {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (!user) {
+        consolel.log(login);
+      }
       const isFilmInWatched = (
         JSON.parse(localStorage.getItem('watched')) || []
       ).some(film => film.id === id);
