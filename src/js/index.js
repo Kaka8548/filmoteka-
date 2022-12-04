@@ -5,3 +5,4 @@ import { openModalWindow } from './modal-window';
 import { onRenderVideo } from './utilities/onRenderVideo';
 import { footerModalOpen } from './modal-window/footerModalOpen';
 import './utilities/pagination';
+import './firebase';
