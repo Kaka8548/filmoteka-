@@ -9,7 +9,7 @@
   background-size: cover;
   background-position: center;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  padding-bottom: 62px;
+  // padding-bottom: 62px;
 
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
@@ -29,7 +29,7 @@
         rgba(0, 0, 0, 0.56)
       ),
       url('../images/header-lib-md.jpg');
-    padding-bottom: 60px;
+    // padding-bottom: 60px;
 
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
@@ -50,7 +50,7 @@
         rgba(0, 0, 0, 0.56)
       ),
       url('../images/header-lib-lg@2x.jpg');
-    padding-bottom: 60px;
+    // padding-bottom: 60px;
 
     @media screen and (min-width: $desktop-width) {
       background-image: linear-gradient(
@@ -59,7 +59,7 @@
           rgba(0, 0, 0, 0.56)
         ),
         url('../images/header-lib-lg@2x.jpg');
-      padding-bottom: 60px;
+      // padding-bottom: 60px;
     }
   }
 }
@@ -67,16 +67,20 @@
 .header-library__list {
   display: flex;
   gap: 20px;
-  margin-top: 60px;
+  margin-top: 59px;
+  margin-bottom: 22px;
 
   @media screen and (min-width: $tablet-width) {
     justify-content: center;
     gap: 32px;
+    margin-top: 54px;
+    margin-bottom: 14px;
   }
 
   @media screen and (min-width: $desktop-width) {
     justify-content: center;
     gap: 16px;
+    margin-bottom: 16px;
   }
 }
 
