@@ -43,9 +43,21 @@
   }
 }
 
-// .page-first {
-//   order: -1;
-// }
+.page-first,
+.page-last {
+  @media screen and (max-width: 799px) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    border: 0;
+    padding: 0;
+    white-space: nowrap;
+    clip-path: inset(100%);
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+  }
+}
 
 .tui-next-is-ellip,
 .tui-prev-is-ellip {
@@ -53,7 +65,7 @@
   justify-content: center;
   align-items: center;
 
-  @media screen and (max-width: 767px) {
+  @media screen and (max-width: 799px) {
     position: absolute;
     width: 1px;
     height: 1px;
