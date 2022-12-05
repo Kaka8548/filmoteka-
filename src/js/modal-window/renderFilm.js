@@ -10,8 +10,9 @@ import { addFilmToWatched } from '../add-remove-local-storage/add-to-watched';
 import { onRenderVideo } from '../utilities/onRenderVideo';
 import { removeFilmFromWatched } from '../add-remove-local-storage/remove-from-watched';
 import { removeFilmFromQueued } from '../add-remove-local-storage/remove-from-queued';
-
+import { loginOperation } from '../firebase';
 import { onRederLibrary } from '../utilities/onRenderLibrary';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 export const renderFilm = async id => {
   const MODAL_WINDOW = document.querySelector('.modal-window');
   MODAL_WINDOW.innerHTML = `${loading}`;
@@ -111,12 +112,13 @@ export const renderFilm = async id => {
     };
     const QUEOUE = MODAL_WINDOW.querySelector('.queue_btn');
     const WATCHED = MODAL_WINDOW.querySelector('.watched_btn');
+    const user_id = JSON.parse(localStorage.getItem('user'))?.user_id;
 
     const isFilmInWatched = (
-      JSON.parse(localStorage.getItem('watched')) || []
+      JSON.parse(localStorage.getItem(`watched${user_id}`)) || []
     ).some(film => film.id === id);
     const isFilmInQueued = (
-      JSON.parse(localStorage.getItem('queued')) || []
+      JSON.parse(localStorage.getItem(`queued${user_id}`)) || []
     ).some(film => film.id === id);
 
     if (isFilmInWatched) {
@@ -146,8 +148,15 @@ export const renderFilm = async id => {
     }
 
     WATCHED.addEventListener('click', () => {
+      const user = JSON.parse(localStorage.getItem('user'));
+
+      if (!user) {
+        Notify.warning('You should login before you can add item to watched!');
+        return;
+      }
+      const userID = user.user_id;
       const isFilmInWatched = (
-        JSON.parse(localStorage.getItem('watched')) || []
+        JSON.parse(localStorage.getItem(`watched${userID}`)) || []
       ).some(film => film.id === id);
       if (isFilmInWatched) {
         WATCHED.textContent = WATCHED.textContent.replace(
@@ -155,7 +164,7 @@ export const renderFilm = async id => {
           'add to'
         );
         WATCHED.classList.add('active');
-        removeFilmFromWatched(id);
+        removeFilmFromWatched(id, userID);
       }
 
       if (!isFilmInWatched) {
@@ -164,16 +173,22 @@ export const renderFilm = async id => {
           'remove from'
         );
         WATCHED.classList.remove('active');
-        addFilmToWatched(filmProps);
+        addFilmToWatched(filmProps, userID);
       }
       if (document.querySelector('.watched')?.classList.contains('active')) {
-        onRederLibrary('watched', 1);
+        onRederLibrary(`watched${userID}`, 1);
       }
     });
 
     QUEOUE.addEventListener('click', () => {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (!user) {
+        Notify.warning('You should login before you can add item to qued!');
+        return;
+      }
+      const userID = user.user_id;
       const isFilmInQueued = (
-        JSON.parse(localStorage.getItem('queued')) || []
+        JSON.parse(localStorage.getItem(`queued${userID}`)) || []
       ).some(film => film.id === id);
       if (isFilmInQueued) {
         QUEOUE.textContent = QUEOUE.textContent.replace(
@@ -181,7 +196,7 @@ export const renderFilm = async id => {
           'add to'
         );
         QUEOUE.classList.add('active');
-        removeFilmFromQueued(id);
+        removeFilmFromQueued(id, userID);
       }
 
       if (!isFilmInQueued) {
@@ -190,10 +205,10 @@ export const renderFilm = async id => {
           'remove from'
         );
         QUEOUE.classList.remove('active');
-        addFilmToQueued(filmProps);
+        addFilmToQueued(filmProps, userID);
       }
       if (document.querySelector('.queue')?.classList.contains('active')) {
-        onRederLibrary('queued', 1);
+        onRederLibrary(`queued${userID}`, 1);
       }
     });
   };

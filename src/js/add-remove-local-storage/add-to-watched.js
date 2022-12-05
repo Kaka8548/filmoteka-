@@ -3,7 +3,7 @@ import { Report } from 'notiflix/build/notiflix-report-aio';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { notiflixSettings } from '../constants/notiflix.js';
 
-export function addFilmToWatched(film) {
+export function addFilmToWatched(film, userKey) {
   try {
     if (
       utils.checkFilmForBeingObject(film) ||
@@ -12,7 +12,7 @@ export function addFilmToWatched(film) {
       return;
     }
 
-    const arrayKey = 'watched';
+    const arrayKey = `watched${userKey}`;
     let watchedArray = utils.getFilmsFromLocalStorage(arrayKey);
     const { id } = film;
 
