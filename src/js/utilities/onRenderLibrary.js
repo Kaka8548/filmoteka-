@@ -6,13 +6,23 @@ let page;
 
 export const onRederLibrary = (storageEl, pageNum) => {
   const films = JSON.parse(localStorage.getItem(storageEl));
-  page = pageNum;
-  totalPages = films.length;
+  console.log(storageEl);
   if (films === null || films.length === 0) {
     const gallery = document.querySelector('.film-selection');
-    gallery.innerHTML = '<h1>Library is empty</h1>';
+    if (storageEl.includes('watched')) {
+      gallery.innerHTML =
+        '<h1 style="margin: auto; font-size: 30px">WATCHED IS EMPTY</h1>';
+    }
+
+    if (storageEl.includes('queued')) {
+      gallery.innerHTML =
+        '<h1 style="margin: auto; font-size: 30px">QUEUE IS EMPTY</h1>';
+    }
+
     return;
   }
+  page = pageNum;
+  totalPages = films.length;
   const pageSize = 20;
   const filmsPage = films.slice(
     pageNum * pageSize - pageSize,
