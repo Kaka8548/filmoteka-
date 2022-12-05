@@ -34,20 +34,25 @@ export default function Pagination(data, queryType, queryWord) {
   };
 
   const pagination = new Pagination(container, options);
+  const lastBtnEl = document.querySelector('.page-last');
+  lastBtnEl.textContent = totalItemsNum / 20;
+
   pagination.on('afterMove', event => {
     const currentPage = event.page;
     if (queryType === 'TRENDING') {
       fetchData('TRENDING', { page: currentPage }).then(res => {
         onRenderGallery(res.data.results);
       });
-      return;
     } else if (queryType === 'SEARCH_MOVIES') {
       fetchData('SEARCH_MOVIES', { page: currentPage, query: queryWord }).then(
         res => {
           onRenderGallery(res.data.results);
-          return;
         }
       );
+    }
+    if (event.page > 1) {
+      const firstBtnEl = document.querySelector('.page-first');
+      firstBtnEl.textContent = '1';
     }
   });
 }
