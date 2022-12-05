@@ -1,5 +1,3 @@
-import { onCloseModal } from './onCloseModal';
-
 export const footerModalOpen = () => {
   const studentsLinkEl = document.querySelector('#students-list');
   const footerModal = document.querySelector('.footer-modal__wrapper');
@@ -7,12 +5,12 @@ export const footerModalOpen = () => {
 
   function onStudentsElClick(event) {
     event.preventDefault();
-    footerModal.classList.remove('hidden');
+    footerModal.classList.remove('visually-hidden');
   }
 
   function onCloseBtnClick(event) {
     event.preventDefault();
-    footerModal.classList.add('hidden');
+    footerModal.classList.add('visually-hidden');
   }
 
   studentsLinkEl.addEventListener('click', onStudentsElClick);
