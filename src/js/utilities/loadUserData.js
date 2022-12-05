@@ -16,6 +16,7 @@ export const loadUserData = () => {
   const USER_INFO = document.querySelector('.user-info');
   USER_INFO.innerHTML = `<p class="user-info__name"> ${user.name}</p>
   <img class="user-info__image"
+    referrerpolicy="no-referrer"
     src=${user.picture}
     alt="${user.name}">`;
 

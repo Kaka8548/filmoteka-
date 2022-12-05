@@ -6,7 +6,6 @@ let page;
 
 export const onRederLibrary = (storageEl, pageNum) => {
   const films = JSON.parse(localStorage.getItem(storageEl));
-  console.log(storageEl);
   if (films === null || films.length === 0) {
     const gallery = document.querySelector('.film-selection');
     if (storageEl.includes('watched')) {
@@ -38,7 +37,6 @@ export const libraryEventListeners = () => {
   const userID = JSON.parse(localStorage.getItem('user'))?.user_id;
   WATCHED.addEventListener('click', () => {
     onRederLibrary(`watched${userID}`, 1);
-    console.log(totalPages);
     PaginationLib(page, totalPages, 'watched');
     WATCHED.classList.add('active');
     QUEUE.classList.remove('active');
