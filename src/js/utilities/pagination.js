@@ -35,7 +35,7 @@ export default function Pagination(data, queryType, queryWord) {
 
   const pagination = new Pagination(container, options);
   const lastBtnEl = document.querySelector('.page-last');
-  lastBtnEl.textContent = totalItemsNum / 20;
+  lastBtnEl.textContent = Math.round(totalItemsNum / 20);
 
   pagination.on('afterMove', event => {
     const currentPage = event.page;
