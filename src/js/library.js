@@ -4,5 +4,6 @@ import { libraryEventListeners } from './utilities/onRenderLibrary';
 import './firebase';
 import { loadUserData } from './utilities/loadUserData';
 
-onRederLibrary('watched', 1);
+const userID = JSON.parse(localStorage.getItem('user'))?.user_id;
+onRederLibrary(`watched${userID}`, 1);
 libraryEventListeners();

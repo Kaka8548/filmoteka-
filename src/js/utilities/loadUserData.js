@@ -14,7 +14,6 @@ export const loadUserData = () => {
   }
   const LOGIN_BUTTON = document.querySelector('.login-button');
   const USER_INFO = document.querySelector('.user-info');
-  console.log(LOGIN_BUTTON, USER_INFO);
   USER_INFO.innerHTML = `<p class="user-info__name"> ${user.name}</p>
   <img class="user-info__image"
     src=${user.picture}

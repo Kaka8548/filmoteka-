@@ -17,15 +17,15 @@ export const onRederLibrary = (storageEl, pageNum) => {
 export const libraryEventListeners = () => {
   const WATCHED = document.querySelector('.watched');
   const QUEUE = document.querySelector('.queue');
-
+  const userID = JSON.parse(localStorage.getItem('user'))?.user_id;
   WATCHED.addEventListener('click', () => {
-    onRederLibrary('watched', 1);
+    onRederLibrary(`watched${userID}`, 1);
     WATCHED.classList.add('active');
     QUEUE.classList.remove('active');
   });
 
   QUEUE.addEventListener('click', () => {
-    onRederLibrary('queued', 1);
+    onRederLibrary(`queued${userID}`, 1);
     WATCHED.classList.remove('active');
     QUEUE.classList.add('active');
   });

@@ -4,7 +4,6 @@ export const footerModalOpen = () => {
   const studentsLinkEl = document.querySelector('#students-list');
   const footerModal = document.querySelector('.footer-modal__wrapper');
   const closeBtnEl = document.querySelector('#footer-modal-close-btn');
-  console.log(studentsLinkEl);
 
   function onStudentsElClick(event) {
     event.preventDefault();
