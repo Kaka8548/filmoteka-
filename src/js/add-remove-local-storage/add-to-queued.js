@@ -1,7 +1,7 @@
 import * as utils from './add-remove-utilities.js';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-export function addFilmToQueued(film) {
+export function addFilmToQueued(film, userKey) {
   try {
     if (
       utils.checkFilmForBeingObject(film) ||
@@ -10,7 +10,7 @@ export function addFilmToQueued(film) {
       return;
     }
 
-    const arrayKey = 'queued';
+    const arrayKey = `queued${userKey}`;
     let queuedArray = utils.getFilmsFromLocalStorage(arrayKey);
     const { id } = film;
 
